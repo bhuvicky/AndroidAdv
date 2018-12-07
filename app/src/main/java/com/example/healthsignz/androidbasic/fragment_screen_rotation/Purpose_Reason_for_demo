@@ -1,0 +1,4 @@
+fragment backstack count remains same, eventhough activity recreate while screen rotation.
+
+ex; Transaction happens like, MainActivity => Fragment A => Fragment B; now fragment backstack count 2
+if we rotate the screen, MainActivity destroy & recreate, but still backstack count 2, not changed.

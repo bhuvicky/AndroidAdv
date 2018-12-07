@@ -1,0 +1,59 @@
+Reason 1 = = > > to check lifecycle of Activity:
+
+while go from Activity-A to Activity-B & comeback from B to A
+
+A to B
+I/System.out: ActivityA OnCreate
+I/System.out: ActivityA onStart
+I/System.out: ActivityA onResume
+I/System.out: ActivityA onPause
+I/System.out: ActivityB OnCreate
+I/System.out: ActivityB onStart
+I/System.out: ActivityB onResume
+I/System.out: ActivityA onStop
+
+B to A
+I/System.out: log BSC after pop = 0
+I/System.out: ActivityB onPause
+I/System.out: ActivityA onRestart
+I/System.out: ActivityA onStart
+I/System.out: ActivityA onResume
+I/System.out: ActivityB onStop
+I/System.out: ActivityB onDestroy
+
+
+Reason 2 = = > > to check whether v can create an Activity without UI ??.
+Yes v can. check ActivityB
+
+= = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
+I/System.out: FragmentA1 onAttach
+I/System.out: FragmentA1 OnCreate
+I/System.out: FragmentA1 onCreateView
+I/System.out: FragmentA1 onViewCreated
+I/System.out: FragmentA1 onStart
+I/System.out: FragmentA1 onResume
+I/System.out: log FragmentB BSC = 1
+
+Fragment A to B; "ADD" Transaction life cycle
+
+I/System.out: FragmentB1 onAttach
+I/System.out: FragmentB1 OnCreate
+I/System.out: FragmentB1 onCreateView
+I/System.out: FragmentB1 onViewCreated
+I/System.out: FragmentB1 onStart
+I/System.out: FragmentB1 onResume
+= = = = > > > At this stage, both Frag A & B's UI will show in the screen. so looks like UI will overlap each other.
+B to A
+I/System.out: FragmentB1 onPause
+I/System.out: FragmentB1 onStop
+I/System.out: FragmentB1 onDestroyView
+I/System.out: FragmentB1 onDestroy
+I/System.out: FragmentB1 onDetach
+
+Note: observe while going from A to B & B to A, no lifecyle of A gets called.
+so, v have to check whether v can pass data from B to A
+
+Yes. v can able to pass data from B to A using interface as usual......
+
+I/System.out: FragmentB1 back pressed
+I/System.out: FragmentA1 data passed from B to A
